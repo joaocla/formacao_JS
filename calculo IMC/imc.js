@@ -1,25 +1,26 @@
-function calcularImc(peso, altura){
-    return peso / Math.pow(altura, 2);
+class Pessoas{
+    constructor(nome, peso, altura){
+        this.nome = nome;
+        this.peso = peso;
+        this.altura = altura;
+        this.imc = (peso / Math.pow(altura, 2)).toFixed(2);
+    }
+    descrever(){
+        return `Olá, me chamo ${this.nome} e meu IMC é ${this.imc}`
+    }
+    classificarImc(){
+        if(this.imc < 18.5){
+            return console.log(`abaixo do peso`);
+        } else if(this.imc >= 18.5 && this.imc < 25){
+            return console.log(`peso normal`);
+        } else if(this.imc >= 25 && this.imc < 30){
+            return console.log(`acima do peso`)
+        } else if(this.imc >= 30 && this.imc <= 40){
+            return console.log(`obesidade`);
+        } else return console.log(`obesidade grave`);
+    }
 }
 
-function classificarImc(imc){
-    if(imc < 18.5){
-        return console.log(`IMC = ${imc.toFixed(2)}, abaixo do peso`);
-    } else if(imc >= 18.5 && imc < 25){
-        return console.log(`IMC = ${imc.toFixed(2)}, peso normal`);
-    } else if(imc >= 25 && imc < 30){
-        return console.log(`IMC = ${imc.toFixed(2)}, acima do peso`)
-    } else if(imc >= 30 && imc <= 40){
-        return console.log(`IMC = ${imc.toFixed(2)}, obesidade`);
-    } else return console.log(`IMC = ${imc.toFixed(2)}, obesidade grave`);
-}
-
-function main(){
-    const altura = 1.81;
-    const peso = 120;
-
-    const imc = calcularImc(peso, altura);
-    console.log(classificarImc(imc));
-}
-
-main();
+const jose = new Pessoas('Jose', 120, 1.80);
+console.log(jose.descrever());
+console.log(jose.classificarImc());
